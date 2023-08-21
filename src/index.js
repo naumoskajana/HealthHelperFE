@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider, StyledEngineProvider, CssBaseline } from '@mui/material';
+import { theme } from './config/theme';
+import GlobalProviders from './context/GlobalProviders';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline enableColorScheme>
+            <GlobalProviders>
+              <App />
+            </GlobalProviders>
+          </CssBaseline>
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
